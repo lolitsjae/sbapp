@@ -2,9 +2,15 @@
 
 <h2>{{title}}</h2>
 <html>
-  
-  <head></head>
-	
-  <body></body>
-  <app-student-form></app-student-form>
+
+<head>
+</head>
+
+<body>
+</body>
+<!--<app-student-form></app-student-form>-->
+<router-outlet></router-outlet>
+<app-student-list></app-student-list>
+<a (click)="goBack()">Back</a>
+
 </html>

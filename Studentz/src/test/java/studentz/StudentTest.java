@@ -41,15 +41,11 @@ public class StudentTest {
 		System.out.println("testing!");
 		
 		
-		
-		//test the header?
-		
-		
 		//(c) ADD user
 		addOne = dog.addStudent("Josh", "Lee", "jhl2274", "hello", rep); 
-/*---*/	assertEquals("The student has been added", addOne);
+/*---*/	assertEquals("Student(studId=jhl2274, firstName=Josh, lastName=Lee)", addOne);
 		addOne = dog.addStudent("Andrew", "Dao", "ahd343", "hello", rep);
-/*---*/	assertEquals("The student has been added", addOne);
+/*---*/	assertEquals("Student(studId=ahd343, firstName=Andrew, lastName=Dao)", addOne);
 		
 		//(c - 1) ADD a user that already exists (same studId)
 		String userAlreadyExists = dog.addStudent("John", "Berry", "jhl2274", "hello", rep);
@@ -66,7 +62,7 @@ public class StudentTest {
 
 		//(b) GET student info
 		getOne = dog.getStudent("jhl2274", "hello", rep); //get single user
-/*---*/	assertEquals("Josh Lee jhl2274", getOne);
+/*---*/	assertEquals("Student(studId=jhl2274, firstName=Josh, lastName=Lee)", getOne);
 
 		//(b - 1) GET a user that doesn't exist
 		getOne = dog.getStudent("de2341", "hello", rep);
@@ -74,11 +70,11 @@ public class StudentTest {
 				
 		//(d) UPDATE student info
 		updateOne = dog.updateStudent("jhl2274", "Jae", "Lee", "hello", rep);
-/*---*/	assertEquals("The student has been updated", updateOne);
+/*---*/	assertEquals("Student(studId=jhl2274, firstName=Jae, lastName=Lee)", updateOne);
 
 		//check to make sure the student has been updated
 		getOne = dog.getStudent("jhl2274", "hello", rep);
-/*---*/	assertEquals(getOne, "Jae Lee jhl2274");
+/*---*/	assertEquals(getOne, "Student(studId=jhl2274, firstName=Jae, lastName=Lee)");
 		
 		//(d - 1) try to UPDATE a student that doesn't exist
 		updateOne = dog.updateStudent("jhl227", "Jae", "Lee", "hello", rep);

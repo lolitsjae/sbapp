@@ -28,7 +28,6 @@ public class StudentServiceImpl implements StudentService{
 			}
 			else { //create the new student
 				Student select = new Student(firstName, lastName, studId);
-				System.out.println(select.toString());
 				return studentrepo.addStudent(select);
 				}
 		}

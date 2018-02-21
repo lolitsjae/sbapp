@@ -1,6 +1,8 @@
 import { Component, Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-root',
@@ -9,8 +11,13 @@ import {HttpClient} from '@angular/common/http';
 })
 
 
-
 @Injectable()
 export class AppComponent {
-  title = 'Student DB';  
+  title = 'Student DB';
+  constructor(public location: Location) {}
+
+
+  goBack() {
+    this.location.back();
+  }
 }

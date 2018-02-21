@@ -10,6 +10,7 @@ import { StudentService } from '../student.service';
   styleUrls: ['./student-form.component.css']
 })
 export class StudentFormComponent implements OnInit {
+  
 
   constructor(private studServ: StudentService) { }
 

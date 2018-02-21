@@ -62,12 +62,12 @@ public class StudentRepoImpl implements StudentRepo{
 			return true;
 		}
 	}
-
+	
 	public String addStudent(Student student) {
 		jdbcTemplate.update("INSERT INTO studenttable (studentid, first, last) VALUES(?, ?, ?)",
 			         student.getStudId(), student.getFirstName(), student.getLastName());
 		System.out.println("The student has been added");
-		return "The student has been added";
+		return student.toString();
 	}
 	
 	public List<Student> getAll(){
