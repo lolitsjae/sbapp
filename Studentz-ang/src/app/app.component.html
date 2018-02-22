@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+
 <h2>{{title}}</h2>
 <html>
 
@@ -10,7 +11,10 @@
 </body>
 <!--<app-student-form></app-student-form>-->
 <router-outlet></router-outlet>
-<app-student-list></app-student-list>
-<a (click)="goBack()">Back</a>
-
 </html>
+<div>
+  <button (click)="showForm()">Show me the form</button>
+</div>
+
+
+<button (click)="goBack()">Back</button>

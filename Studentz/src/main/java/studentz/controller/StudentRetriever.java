@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+//import com.google.gson.Gson;
+//import com.google.gson.GsonBuilder;
+
 
 import studentz.model.Student;
 import studentz.service.StudentService;
@@ -46,10 +49,18 @@ public class StudentRetriever{
 	
 	//get specific student on the database
 	@GetMapping(path = "/getStudent")
-	public @ResponseBody String getStudent(@RequestParam(value = "studId") String studId,
+	public @ResponseBody List<Student> getStudent(@RequestParam(value = "studId") String studId,
+//	public @ResponseBody String getStudent(@RequestParam(value = "studId") String studId,
+
 			@RequestHeader(value = "Authentication") String header,
 			HttpServletResponse rep) {
 		return studentserviceimpl.getStudent(studId, rep);
+		
+		
+//		Gson gson = new Gson();
+//		String json = gson.toJson(studentserviceimpl.getStudent(studId, rep));
+//		return json;
+
 	}
 	
 	//update student info except ID

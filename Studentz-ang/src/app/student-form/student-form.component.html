@@ -1,38 +1,43 @@
 <div class="container">
-	<h1>Student Form</h1>
-	<form (ngSubmit)="onSubmit()" #studentForm="ngForm">
-		<div class="form-group">
-			<label for="Authentication">Header</label> <input type="text"
-				class="form-control" id="Authentication" required
-				name="Authentication" #inputHeader>
-		</div>
-		<div class="form-group">
-			<label for="studId">ID:</label> <input type="text"
-				class="form-control" id="studId" 
-				name="studId" #inputId>
+  <h1>Student Form</h1>
+  <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
+    <div class="form-group">
+      <label for="Authentication">Header</label> <input type="text"
+                                                        class="form-control" id="Authentication" required
+                                                        name="Authentication" #inputHeader>
+    </div>
+    <div class="form-group">
+      <label for="studId">ID:</label> <input type="text"
+                                             class="form-control" id="studId"
+                                             name="studId" #inputId>
 
-		</div>
-		<div class="form-group">
-			<label for="firstName">First Name</label> <input type="text"
-				class="form-control" id="firstName" 
-				name="firstName" #inputFn>
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name</label> <input type="text"
+                                                       class="form-control" id="firstName"
+                                                       name="firstName" #inputFn>
 
-		</div>
+    </div>
 
-		<div class="form-group">
-			<label for="lastName">Last Name</label> <input type="text"
-				class="form-control" id="lastName"
-				name="lastName"#inputLn>
+    <div class="form-group">
+      <label for="lastName">Last Name</label> <input type="text"
+                                                     class="form-control" id="lastName"
+                                                     name="lastName" #inputLn>
 
-		</div>
+    </div>
 
-		<div class="form-group">
-			<label for="function">Function</label> <select class="form-control"
-				id="function" required #inputMeth>
-				<option *ngFor="let f of func" [value]="f">{{f}}</option>
-			</select>
-		</div>
-		<button type="submit" (click)="changeHandler(inputMeth, inputHeader, inputId, inputFn, inputLn)">submit</button>
-	</form>
+    <div class="form-group">
+      <label for="function">Function</label> <select class="form-control"
+                                                     id="function" required #inputMeth>
+        <option *ngFor="let f of func" [value]="f">{{f}}</option>
+      </select>
+    </div>
+    <button type="button" (click)="changeHandler(inputMeth, inputHeader, inputId, inputFn, inputLn)">submit</button>
+  </form>
 </div>
+
+
+
+
+
 

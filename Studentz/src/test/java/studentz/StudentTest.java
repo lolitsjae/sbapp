@@ -4,6 +4,8 @@ package studentz;
 import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,9 +31,11 @@ public class StudentTest {
 		String addOne;
 		String deleteAll;
 		Iterable<Student> getAll;
-		String getOne;
+		List<Student> getOne;
 		String updateOne;
 		String deleteOne;
+		Student x;
+		ArrayList<Student> testList = new ArrayList<Student>();
 		
 		@Autowired
 		HttpServletResponse rep;
@@ -62,11 +66,14 @@ public class StudentTest {
 
 		//(b) GET student info
 		getOne = dog.getStudent("jhl2274", "hello", rep); //get single user
-/*---*/	assertEquals("Student(studId=jhl2274, firstName=Josh, lastName=Lee)", getOne);
+		x = new Student("Josh", "Lee", "jhl2274");
+		testList.add(x);
+/*---*/	assertEquals(testList, getOne);
 
 		//(b - 1) GET a user that doesn't exist
 		getOne = dog.getStudent("de2341", "hello", rep);
-/*---*/	assertEquals("There is no such student", getOne);
+		testList = new ArrayList<Student>();
+/*---*/	assertEquals(testList, getOne);
 				
 		//(d) UPDATE student info
 		updateOne = dog.updateStudent("jhl2274", "Jae", "Lee", "hello", rep);
@@ -74,7 +81,9 @@ public class StudentTest {
 
 		//check to make sure the student has been updated
 		getOne = dog.getStudent("jhl2274", "hello", rep);
-/*---*/	assertEquals(getOne, "Student(studId=jhl2274, firstName=Jae, lastName=Lee)");
+		x = new Student("Jae", "Lee", "jhl2274");
+		testList.add(x);
+/*---*/	assertEquals(getOne, testList);
 		
 		//(d - 1) try to UPDATE a student that doesn't exist
 		updateOne = dog.updateStudent("jhl227", "Jae", "Lee", "hello", rep);

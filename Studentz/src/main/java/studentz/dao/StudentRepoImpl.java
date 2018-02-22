@@ -1,5 +1,6 @@
 package studentz.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -57,7 +58,8 @@ public class StudentRepoImpl implements StudentRepo{
 					throw new NullPointerException();					
 				}
 		}
-		catch (NullPointerException e){	
+		catch (NullPointerException e){
+			System.out.println("There is no such student");
 			rep.setStatus(404);
 			return true;
 		}
@@ -66,7 +68,7 @@ public class StudentRepoImpl implements StudentRepo{
 	public String addStudent(Student student) {
 		jdbcTemplate.update("INSERT INTO studenttable (studentid, first, last) VALUES(?, ?, ?)",
 			         student.getStudId(), student.getFirstName(), student.getLastName());
-		System.out.println("The student has been added");
+		System.out.println(student.toString() + "has been added");
 		return student.toString();
 	}
 	
@@ -78,10 +80,14 @@ public class StudentRepoImpl implements StudentRepo{
 	}
 	
 	
-	public String getStudent(String studId) {
+	public List<Student> getStudent(String studId) {
+//	public String getStudent(String studId) {
+		List<Student> estudiante = new ArrayList<Student>();
 		Student select = findOne(studId);
-		System.out.println(select.toString());
-		return select.toString();
+		estudiante.add(select);
+		System.out.println(estudiante.toString());
+		return estudiante;
+//		return select.toString();
 	}
 	
 	public String updateStudent(String firstName, String lastName, String studId) {

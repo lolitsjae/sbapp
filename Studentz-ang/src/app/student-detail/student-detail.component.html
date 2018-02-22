@@ -1,3 +1,6 @@
-<p>
-  student-detail works!
-</p>
+<div *ngIf="student">
+  <li *ngFor="let x of student">
+    <h4>ID: {{x.studId}} + First Name: {{x.firstName}} + Last Name: {{x.lastName}}</h4>
+  </li>
+</div>
+

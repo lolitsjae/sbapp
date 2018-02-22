@@ -1,5 +1,6 @@
 package studentz.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -37,25 +38,25 @@ public class StudentServiceImpl implements StudentService{
 		return studentrepo.getAll();
 	}
 	
-	public String getStudent(String studId, HttpServletResponse rep) {
-		if(studentrepo.validId(studId, rep)) {
-			rep.setStatus(404);
-			System.out.println("There is no such student");
-			return "There is no such student";
-		}
-		else {
-			return studentrepo.getStudent(studId);
-		}
+	
+	//issue here because regardless of having no value, still does getstudent so passing null list atm
+	
+	public List<Student> getStudent(String studId, HttpServletResponse rep) { 
+//	public String getStudent(String studId, HttpServletResponse rep) { 
+//		studentrepo.validId(studId, rep);
+//		return studentrepo.getStudent(studId);
+		List<Student> empty = new ArrayList<Student>();
+			if(!studentrepo.validId(studId, rep)) { 
+				return studentrepo.getStudent(studId);
+			}
+			else {
+				return empty;
+			}
 	}
 	
 	
 	public String updateStudent(String firstName, String lastName, String studId, HttpServletResponse rep) {
-		if(studentrepo.validId(studId, rep)) { //there isn't a student to be updated
-			rep.setStatus(404);
-			System.out.println("There is no such student");
-			return "There is no such student";
-		}
-		else { //the student exists and can be updated
+		if(!studentrepo.validId(studId, rep)){ //the student exists and can be updated
 			if(firstName.length() != 0 && lastName.length() != 0) { //updated fields cannot be empty!
 				return studentrepo.updateStudent(firstName, lastName, studId);
 			}
@@ -64,17 +65,14 @@ public class StudentServiceImpl implements StudentService{
 				return "Please make sure you've inputted all the correct field";
 			}
 		}
+		return "There is no such student";
 	}
 	
 	public String deleteStudent(String studId, HttpServletResponse rep) {
-		if(studentrepo.validId(studId, rep)) { //student must exist or cannot be deleted
-			rep.setStatus(404);
-			System.out.println("There is no such student");
-			return "There is no such student";
-		}
-		else {
+		if(!studentrepo.validId(studId, rep)) { 
 			return studentrepo.deleteStudent(studId);
 		}
+		return "done with deleteStudent for now";
 	}
 	
 	public String deleteAll() {

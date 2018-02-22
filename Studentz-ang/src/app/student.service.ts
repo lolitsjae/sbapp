@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Student } from './student';
+import 'rxjs/add/operator/toPromise';
+
 
 
 
@@ -19,14 +21,15 @@ export class StudentService {
  	return this.http.post(this.urlz+ '/addStudent', "", {params: params, headers: headers});
   }
   
-  public getStudent(Authentication, studId){
-  	let headers = new HttpHeaders({'Authentication':Authentication});
-  	let params = new HttpParams().set('studId',studId);
-  	return this.http.get(this.urlz+ '/getStudent', {headers: headers, params: params});
+  public getStudent(Authentication, studId): Promise<Student>{
+    let headers = new HttpHeaders({ 'Authentication': Authentication });
+    let params = new HttpParams().set('studId', studId);
+    return this.http.get(this.urlz + '/getStudent', { headers: headers, params: params }).toPromise().then(response => response as Student)
+      .catch(this.noStudent);
   }
-  public getAll(Authentication){
-  	let headers = new HttpHeaders({'Authentication':Authentication});
-  	return this.http.get(this.urlz+ '/getAll', {headers: headers});
+  public getAll(Authentication): Promise<Student[]> {
+    let headers = new HttpHeaders({ 'Authentication': Authentication });
+    return this.http.get(this.urlz + '/getAll', { headers: headers }).toPromise().then(response => response as Student[]);
   }
   public deleteStudent(Authentication, studId){
   	let headers = new HttpHeaders({'Authentication':Authentication});
@@ -43,4 +46,8 @@ export class StudentService {
   	return this.http.put(this.urlz+ '/updateStudent', "", {params: params, headers: headers});
   }
 
+  private noStudent(error: any): Promise<any> {
+    alert("error!");
+    return Promise.reject(error.message || error);
+  }
 }

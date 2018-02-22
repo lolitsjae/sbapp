@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { StudentFormComponent } from '../student-form/student-form.component'
+import { StudentService } from '../student.service';
+import { Student } from '../student';
+import { ActivatedRoute } from '@angular/router';
+
 
 
 @Component({
@@ -10,13 +13,22 @@ import { StudentFormComponent } from '../student-form/student-form.component'
 })
 export class StudentListComponent implements OnInit {
 
-  constructor(public router: Router) { }
+  head: string;
+  students: Student[];
+  private sub: any;
+  selectedStudent: string;
+
+  constructor(private route: ActivatedRoute, private studServ: StudentService, private router: Router) { }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => { this.head = params['header']});
+    this.studServ.getAll(this.head).then(students => this.students = students);
   }
 
-  showForm() {
-    this.router.navigate(['student-form']);
+
+  pickStudent(header: HTMLInputElement, studId: string) {
+    this.selectedStudent = studId;
+    this.router.navigate(['student-detail', { header: header.value, studId: this.selectedStudent }]);
   }
 
 }

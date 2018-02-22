@@ -14,7 +14,9 @@ public interface StudentRepo{
 	public String addStudent(Student student);
 	public boolean validId(String studId, HttpServletResponse rep) throws NullPointerException;
 	public List<Student> getAll();
-	public String getStudent(String studId);
+	public List<Student> getStudent(String studId);
+//	public String getStudent(String studId);
+
 	public String deleteStudent(String studId);
 	public String updateStudent(String firstName, String lastName, String studId);
 	public String deleteAll();

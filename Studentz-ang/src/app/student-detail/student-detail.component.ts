@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { StudentService } from '../student.service';
+import { Student } from '../student';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+
+
+
 
 
 @Component({
@@ -8,9 +15,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentDetailComponent implements OnInit {
 
-  constructor() { }
+  student: Student;
+  head: string;
+  stud: string;
+  private sub: any;
+
+
+  constructor(private studServ: StudentService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => { this.head = params['header'], this.stud = params['studId'] });
+    this.studServ.getStudent(this.head, this.stud).then(student => this.student = student);
   }
 
   

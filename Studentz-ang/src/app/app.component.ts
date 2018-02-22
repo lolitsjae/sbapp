@@ -2,6 +2,8 @@ import { Component, Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -14,8 +16,11 @@ import { Location } from '@angular/common';
 @Injectable()
 export class AppComponent {
   title = 'Student DB';
-  constructor(public location: Location) {}
+  constructor(public location: Location, public router: Router) { }
 
+  showForm() {
+    this.router.navigate(['student-form']);
+  }
 
   goBack() {
     this.location.back();
