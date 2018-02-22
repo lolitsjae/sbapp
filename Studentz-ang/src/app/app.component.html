@@ -1,20 +1,12 @@
 <!DOCTYPE html>
 
 
-<h2>{{title}}</h2>
-<html>
-
-<head>
-</head>
-
-<body>
-</body>
-<!--<app-student-form></app-student-form>-->
+<h2 *ngIf="route === '/home'">{{title}}</h2>
 <router-outlet></router-outlet>
-</html>
 <div>
   <button (click)="showForm()">Show me the form</button>
 </div>
 
 
 <button (click)="goBack()">Back</button>
+<button (click)="home()">Home</button>

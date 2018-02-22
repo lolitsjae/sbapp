@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AppComponent {
+  route = '/home';
   title = 'Student DB';
   constructor(public location: Location, public router: Router) { }
 
@@ -24,5 +25,9 @@ export class AppComponent {
 
   goBack() {
     this.location.back();
+  }
+
+  home() {
+    this.router.navigate(['home']);
   }
 }

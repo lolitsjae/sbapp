@@ -17,11 +17,10 @@ import 'rxjs/add/operator/toPromise';
   styleUrls: ['./student-form.component.css']
 })
 export class StudentFormComponent implements OnInit {
-  
+
+  route = '/dd'
 
   constructor(private studServ: StudentService, private router: Router) { }
-
-
 
   students: Student[];
   student: Student;
@@ -36,12 +35,9 @@ export class StudentFormComponent implements OnInit {
 		  }
       else if (meth.value === 'getStudent') {
         this.router.navigate(['student-detail', {header:header.value, studId: studId.value}]);
-        //this.studServ.getStudent(header.value, studId.value).then(student => this.student = student);
 		  }
       else if (meth.value === 'getAll') {
         this.router.navigate(['student-list', { header: header.value }]);
-
-        //this.studServ.getAll(header.value).then(students => this.students = students);
       }
       else if (meth.value === 'deleteStudent') {
         this.studServ.deleteStudent(header.value, studId.value).subscribe();
@@ -57,10 +53,7 @@ export class StudentFormComponent implements OnInit {
 
     ngOnInit() {
     }
-	
-	submitted = false;
 
- 	onSubmit() { this.submitted = true;}
  	
 	
 	

@@ -25,10 +25,8 @@ export class StudentListComponent implements OnInit {
     this.studServ.getAll(this.head).then(students => this.students = students);
   }
 
-
   pickStudent(header: HTMLInputElement, studId: string) {
-    this.selectedStudent = studId;
-    this.router.navigate(['student-detail', { header: header.value, studId: this.selectedStudent }]);
+    this.router.navigate(['student-detail', { header: header.value, studId: studId }]);
   }
 
 }

@@ -8,27 +8,12 @@ If you want to get the specific student.. insert header first
 </div>
 
 
-<ul class="students">
+<ul>
   <li *ngFor="let stud of students"
-      [class.selected]="stud === selectedStduent"
       (click)=" pickStudent(inputHeader, stud.studId)">
-      ID:<a>{{stud.studId}}</a>
-
-
-
-
-
-
-      <br />
-
-
-
-
-
-
-
-      <!--First Name: {{stud.firstName}} <br /> Last Name:{{stud.lastName}}-->
-
+     <h3>
+       ID:<a>{{stud.studId}}</a>
+       </h3>
   </li>
 </ul>
 

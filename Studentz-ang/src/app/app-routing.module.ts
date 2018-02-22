@@ -14,6 +14,9 @@ const routes: Routes = [
   },
   {
     path: 'student-list', component: StudentListComponent
+  },
+  {
+    path: 'home', redirectTo: '/'
   }
 ]
 
