@@ -25,7 +25,7 @@ export class StudentDetailComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => { this.head = params['header'], this.stud = params['studId'] });
-    this.studServ.getStudent(this.head, this.stud).map(student => this.student = student);
+    this.studServ.getStudent(this.head, this.stud).then(student => this.student = student);
   }
 
   

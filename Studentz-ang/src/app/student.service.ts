@@ -21,12 +21,12 @@ export class StudentService {
  	return this.http.post(this.urlz+ '/addStudent', "", {params: params, headers: headers});
   }
   
-  public getStudent(Authentication, studId): Observable<Student>{
+  public getStudent(Authentication, studId): Promise<Student>{
     let headers = new HttpHeaders({ 'Authentication': Authentication });
     let params = new HttpParams().set('studId', studId);
-    //return this.http.get(this.urlz + '/getStudent', { headers: headers, params: params }).toPromise().then(response => response as Student)
-      //.catch(this.noStudent);
-    return this.http.get(this.urlz + '/getStudent', { headers: headers, params: params }).map(response => { return response as Student });
+    return this.http.get(this.urlz + '/getStudent', { headers: headers, params: params }).toPromise().then(response => response as Student)
+      .catch(this.noStudent);
+    //return this.http.get(this.urlz + '/getStudent', { headers: headers, params: params }).map(response => { return response as Student });
   }
   public getAll(Authentication): Promise<Student[]> {
     let headers = new HttpHeaders({ 'Authentication': Authentication });
